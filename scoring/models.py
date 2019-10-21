@@ -27,7 +27,7 @@ class Student(models.Model):
     school = models.CharField(max_length=100)
     project_id = models.ForeignKey(Project, on_delete=models.PROTECT)
 
-class judge_assignment(models.Model):
+class Judge_Assignment(models.Model):
     judge_id_f = models.ForeignKey(Judge, on_delete=models.PROTECT)
     project_id = models.ForeignKey(Project, on_delete=models.PROTECT)
     goal_score = models.IntegerField()
