@@ -1,20 +1,43 @@
 {% block content %}
     <div class="button-group">
-        <a href='#' role="button"> Judge </a>
-        <a href='#' role="button"> Student </a>
-        <a href='#' role="button"> Project </a>
-        <a href='#' role="button"> Judge Assignment </a>
+        <a href="{% url 'display_judges'  %}" role="button"> Judge </a>
+        <a href="{% url 'display_students' %}" role="button"> Student </a>
+        <a href="#" role="button"> Project </a>
+        <a href="#" role="button"> Judge Assignment </a>
     </div>
 
     <table>
+        {% if button == "judges" %}
         <thread>
             <tr>
                 <th>Judge ID</th>
                 <th>Judge name</th>
             </tr>
         </thread>
+        {% endif %}
+        {% if button == "students" %}
+        <thread>
+            <tr>
+                <th>Student ID</th>
+                <th>School</th>
+                <th>Project ID</th>
+            </tr>
+        </thread>
+        {% endif %}
         <tbody>
-            
+            {% for item in items %}
+            <tr>
+                <td>{{item.pk}}</td>
+                <td>{{item.name}}</td>
+            </tr>
+            {% endfor %}
+            {% for student_item in student_items %}
+            <tr>
+                <td>{{student_item.pk}}</td>
+                <td>{{student_item.school}}</td>
+                <td>{{student_item.project_id}}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock content %}
