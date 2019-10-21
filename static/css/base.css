@@ -9,6 +9,11 @@ header {
     display: flex;
 }
 
+table {
+    table-layout: auto;
+    width: 100%;
+}
+
 header h1 a {
     color: red;
     text-decoration: none;

@@ -30,20 +30,20 @@ def display_judges(request):
 
 def display_projects(request):
     button = "projects"
-    items = Project.objects.all()
+    project_items = Project.objects.all()
     context = {
         'button' : button,
-        'items' : items,
+        'project_items' : project_items,
         #'name' : 
     }
     return render(request, 'home.html', context)
 
 def display_judge_assignments(request):
-    button = "judge_assignment"
-    items = Judge_Assignment.objects.all()
+    button = "judge_assignments"
+    ja_items = Judge_Assignment.objects.all()
     context = {
         'button' : button,
-        'items' : items,
+        'ja_items' : ja_items,
         #'name' : 
     }
     return render(request, 'home.html', context)
