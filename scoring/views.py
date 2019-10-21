@@ -17,3 +17,6 @@ def home(request):
     #        line = line.split(',')
     #        tmp = Judge.object.create()
     #        tmp.judge_id = line[]
+
+#def display_judges(request):
+ #   judge
