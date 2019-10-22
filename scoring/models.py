@@ -18,8 +18,8 @@ class Project(models.Model):
     scaled_rank = models.FloatField()
     scaled_z = models.FloatField()
     isef_score = models.FloatField()
-    isef_rank = models.IntegerField()
 
+    isef_rank = models.IntegerField()
 class Student(models.Model):
     id = models.CharField(max_length=30, primary_key=True)
     #first_name = models.CharField()

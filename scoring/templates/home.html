@@ -1,104 +1,104 @@
-{% block content %}
-    <div class="button-group">
-        <a href="{% url 'display_judges'  %}" role="button"> Judge </a>
-        <a href="{% url 'display_students' %}" role="button"> Student </a>
-        <a href="{% url 'display_projects' %}" role="button"> Project </a>
-        <a href="{% url 'display_judge_assignments' %}" role="button"> Judge Assignment </a>
-    </div>
 
-    <table  style="text-align:center;" cellspacing="10">
-        {% if button == "judges" %}
-        <thread>
-            <tr>
-                <th>Judge ID</th>
-                <th>Judge name</th>
-            </tr>
-        </thread>
-        {% endif %}
-        {% if button == "students" %}
-        <thread>
-            <tr>
-                <th>Student ID</th>
-                <th>School</th>
-                <th>Project ID</th>
-            </tr>
-        </thread>
-        {% endif %}
-        {% if button == "projects" %}
-        <thread>
-            <tr>
-                <th>Project ID</th>
-                <th>Description</th>
-                <th>Project Title</th>
-                <th>Project Category</th>
-                <th>avg Score</th>
-                <th>Rank</th>
-                <th>Z Score</th>
-                <th>Scaled Score</th>
-                <th>Scaled Rank</th>
-                <th>Scaled Z</th>
-                <th>isef Score</th>
-                <th>isef Rank</th>
-            </tr>
-        </thread>
-        {% endif %}
-        {% if button == "judge_assignments" %}
-        <thread>
-            <tr>
-                <th>Judge ID</th>
-                <th>Project ID</th>
-                <th>Goal Score</th>
-                <th>Plan Score</th>
-                <th>Action Score</th>
-                <th>Result Analyis Score</th>
-                <th>Communication Score</th>
-                <th>Raw Score</th>
-            </tr>
-        </thread>
-        {% endif %}
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <td>{{item.pk}}</td>
-                <td>{{item.name}}</td>
-            </tr>
-            {% endfor %}
-            {% for student_item in student_items %}
-            <tr>
-                <td>{{student_item.pk}}</td>
-                <td>{{student_item.school}}</td>
-                <td>{{student_item.project_id}}</td>
-            </tr>
-            {% endfor %}
-            {% for project_item in project_items %}
-            <tr>
-                <td>{{project_item.pk}}</td>
-                <td>{{project_item.description}}</td>
-                <td>{{project_item.project_title}}</td>
-                <td>{{project_item.project_category}}</td>
-                <td>{{project_item.avg_score}}</td>
-                <td>{{project_item.rank}}</td>
-                <td>{{project_item.z_score}}</td>
-                <td>{{project_item.scaled_score}}</td>
-                <td>{{project_item.scaled_rank}}</td>
-                <td>{{project_item.scaled_z}}</td>
-                <td>{{project_item.isef_score}}</td>
-                <td>{{project_item.isef_rank}}</td>
-            </tr>
-            {% endfor %}
-            {% for ja_item in ja_items %}
-            <tr>
-                <td>{{ja_item.pk}}</td>
-                <td>{{ja_item.judge_id_f}}</td>
-                <td>{{ja_item.project_id}}</td>
-                <td>{{ja_item.goal_score}}</td>
-                <td>{{ja_item.plan_score}}</td>
-                <td>{{ja_item.action_score}}</td>
-                <td>{{ja_item.result_analysis_score}}</td>
-                <td>{{ja_item.communication_score}}</td>
-                <td>{{ja_item.raw_score}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock content %}
+{% extends 'base.html' %}
+    {% block content %}
+        <table  style="text-align:center;" cellspacing="10">
+            {% if button == "judges" %}
+            <h3>Judges</h3>
+            <thread>
+                <tr>
+                    <th>Judge ID</th>
+                    <th>Judge name</th>
+                </tr>
+            </thread>
+            {% endif %}
+            {% if button == "students" %}
+            <h3>Students</h3>
+            <thread>
+                <tr>
+                    <th>Student ID</th>
+                    <th>School</th>
+                    <th>Project ID</th>
+                </tr>
+            </thread>
+            {% endif %}
+            {% if button == "projects" %}
+            <h3>Projects</h3>
+            <thread>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Description</th>
+                    <th>Project Title</th>
+                    <th>Project Category</th>
+                    <th>avg Score</th>
+                    <th>Rank</th>
+                    <th>Z Score</th>
+                    <th>Scaled Score</th>
+                    <th>Scaled Rank</th>
+                    <th>Scaled Z</th>
+                    <th>isef Score</th>
+                    <th>isef Rank</th>
+                </tr>
+            </thread>
+            {% endif %}
+            {% if button == "judge_assignments" %}
+            <h3>Judge Assignments</h3>
+            <thread>
+                <tr>
+                    <th>Judge ID</th>
+                    <th>Project ID</th>
+                    <th>Goal Score</th>
+                    <th>Plan Score</th>
+                    <th>Action Score</th>
+                    <th>Result Analyis Score</th>
+                    <th>Communication Score</th>
+                    <th>Raw Score</th>
+                </tr>
+            </thread>
+            {% endif %}
+            <tbody>
+                {% for item in items %}
+                <thread>
+                <tr>
+                    <td>{{item.pk}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+                {% endfor %}
+                {% for student_item in student_items %}
+                <tr>
+                    <td>{{student_item.pk}}</td>
+                    <td>{{student_item.school}}</td>
+                    <td>{{student_item.project_id}}</td>
+                </tr>
+                {% endfor %}
+                {% for project_item in project_items %}
+                <tr>
+                    <td>{{project_item.pk}}</td>
+                    <td>{{project_item.description}}</td>
+                    <td>{{project_item.project_title}}</td>
+                    <td>{{project_item.project_category}}</td>
+                    <td>{{project_item.avg_score}}</td>
+                    <td>{{project_item.rank}}</td>
+                    <td>{{project_item.z_score}}</td>
+                    <td>{{project_item.scaled_score}}</td>
+                    <td>{{project_item.scaled_rank}}</td>
+                    <td>{{project_item.scaled_z}}</td>
+                    <td>{{project_item.isef_score}}</td>
+                    <td>{{project_item.isef_rank}}</td>
+                </tr>
+                {% endfor %}
+                {% for ja_item in ja_items %}
+                <tr>
+                    <td>{{ja_item.pk}}</td>
+                    <td>{{ja_item.judge_id_f}}</td>
+                    <td>{{ja_item.project_id}}</td>
+                    <td>{{ja_item.goal_score}}</td>
+                    <td>{{ja_item.plan_score}}</td>
+                    <td>{{ja_item.action_score}}</td>
+                    <td>{{ja_item.result_analysis_score}}</td>
+                    <td>{{ja_item.communication_score}}</td>
+                    <td>{{ja_item.raw_score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock content %}
