@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scoring.apps.ScoringConfig',
     'import_export',
+    'tablib',
 ]
 
 MIDDLEWARE = [
