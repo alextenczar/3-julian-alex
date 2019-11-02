@@ -38,8 +38,8 @@ class jaResource(resources.ModelResource):
     communication_score = fields.Field(attribute='', column_name='')
     raw_score = fields.Field(attribute='', column_name='')
     """
-
+'''
 class studentResource(resources.ModelResource):
     id = fields.Field(attribute='', column_name='E')
     school = fields.Field(attribute='', column_name='H')
-    project_id = fields.Field(attribute='', column_name='D')
+    project_id = fields.Field(attribute='', column_name='D')'''
