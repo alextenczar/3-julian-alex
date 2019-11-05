@@ -44,6 +44,7 @@
             <h3>Judge Assignments</h3>
             <thread>
                 <tr>
+                    <th>Index</th>
                     <th>Judge ID</th>
                     <th>Project ID</th>
                     <th>Goal Score</th>
@@ -67,7 +68,7 @@
                 <tr>
                     <td>{{student_item.pk}}</td>
                     <td>{{student_item.school}}</td>
-                    <td>{{student_item.project_id}}</td>
+                    <td>{{student_item.project_id.project_id}}</td>
                 </tr>
                 {% endfor %}
                 {% for project_item in project_items %}
@@ -78,19 +79,19 @@
                     <td>{{project_item.project_category}}</td>
                     <td>{{project_item.avg_score}}</td>
                     <td>{{project_item.rank}}</td>
-                    <td>{{project_item.z_score}}</td>
-                    <td>{{project_item.scaled_score}}</td>
-                    <td>{{project_item.scaled_rank}}</td>
-                    <td>{{project_item.scaled_z}}</td>
-                    <td>{{project_item.isef_score}}</td>
+                    <td>{{project_item.z_score|floatformat:3}}</td>
+                    <td>{{project_item.scaled_score|floatformat:3}}</td>
+                    <td>{{project_item.scaled_rank|floatformat:3}}</td>
+                    <td>{{project_item.scaled_z|floatformat:3}}</td>
+                    <td>{{project_item.isef_score|floatformat:3}}</td>
                     <td>{{project_item.isef_rank}}</td>
                 </tr>
                 {% endfor %}
                 {% for ja_item in ja_items %}
                 <tr>
                     <td>{{ja_item.pk}}</td>
-                    <td>{{ja_item.judge_id_f}}</td>
-                    <td>{{ja_item.project_id}}</td>
+                    <td>{{ja_item.judge_id.judge_id}}</td>
+                    <td>{{ja_item.project_id.project_id}}</td>
                     <td>{{ja_item.goal_score}}</td>
                     <td>{{ja_item.plan_score}}</td>
                     <td>{{ja_item.action_score}}</td>
