@@ -1,5 +1,4 @@
 from django.db import models
-import csv
 
 # Create your models here.
 class Judge(models.Model):
@@ -25,11 +24,12 @@ class Student(models.Model):
     #first_name = models.CharField()
     #last_name = models.CharField()
     school = models.CharField(max_length=100)
-    project_id = models.ForeignKey(Project, on_delete=models.PROTECT)
+    project_id = models.ForeignKey(Project, to_field='project_id', on_delete=models.PROTECT)
 
 class Judge_Assignment(models.Model):
-    judge_id_f = models.ForeignKey(Judge, on_delete=models.PROTECT)
-    project_id = models.ForeignKey(Project, on_delete=models.PROTECT)
+    ja_id = models.IntegerField(primary_key=True)
+    judge_id = models.ForeignKey(Judge, to_field='judge_id', on_delete=models.PROTECT)
+    project_id = models.ForeignKey(Project, to_field='project_id', on_delete=models.PROTECT)
     goal_score = models.IntegerField(null=True)
     plan_score = models.IntegerField(null=True)
     action_score = models.IntegerField(null=True)
