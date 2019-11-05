@@ -18,6 +18,12 @@ def home(request):
     #        tmp = Judge.object.create()
     #        tmp.judge_id = line[]
 
+    #file = 
+    #context = {
+    #    'file' : file,
+    #}
+    #return render(request, 'home.html', context)
+
 def display_judges(request):
     items = Judge.objects.all()
     button = "judges"

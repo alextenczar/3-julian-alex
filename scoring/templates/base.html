@@ -18,8 +18,9 @@
                     <a href="{% url 'display_students' %}" role="button" class="b"> Student </a>
                     <a href="{% url 'display_projects' %}" role="button" class="b"> Project </a>
                     <a href="{% url 'display_judge_assignments' %}" role="button" class="b"> Judge Assignment </a>
+                    <button name="import-btn" id="import-btn">Import</button>
             </div>
-        </header>
+        </header> 
         <div>
             {% block content %}
             {% endblock content%}
