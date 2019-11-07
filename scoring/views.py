@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from .models import *
 import csv
+from .views import *
+from . import methods
+
 # Create your views here.
 class HomeListView(ListView):
     model = Judge
@@ -63,3 +66,12 @@ def display_students(request):
         #'name' : 
     }
     return render(request, 'home.html', context)
+
+def import_request(request):
+    # import function to run
+
+    # call function
+    methods.importFile() 
+
+    # return user to required page
+    return render(request, 'home.html')
