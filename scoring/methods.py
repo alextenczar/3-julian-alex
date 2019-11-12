@@ -5,5 +5,5 @@ from tkinter import *
 def importFile():
 
     root = Tk()
-    root.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
+    root.filename =  filedialog.askopenfilename()
     print (root.filename)
