@@ -8,9 +8,9 @@ from .convertStrToNum import float1, int1
 
 @admin.register(Judge, Project, Judge_Assignment, Student)
 class ViewAdmin(ImportExportModelAdmin):
-    # Student.objects.all().delete()
-    # Project.objects.all().delete()
     # Judge.objects.all().delete()
+    # Project.objects.all().delete()
+    # Student.objects.all().delete()
     # Judge_Assignment.objects.all().delete()
     wb = load_workbook(filename = 'Open Scoring UNH Ver09.xlsm', data_only=True)
     sheet = wb.active
