@@ -11,4 +11,5 @@ urlpatterns = [
     path('display_judge_assignments/', display_judge_assignments, name='display_judge_assignments'),
     path('display_students/', display_students, name='display_students'),
     path('import_file/', import_file, name='import_file'),
+    path('export_jugde_assignment/', export_jugde_assignment, name='export_jugde_assignment')
 ]

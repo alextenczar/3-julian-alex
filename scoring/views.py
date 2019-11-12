@@ -5,6 +5,7 @@ import csv
 from openpyxl import load_workbook
 from string import ascii_uppercase
 from .convertStrToNum import float1, int1
+from django.http import HttpResponse
 
 # Create your views here.
 class HomeListView(ListView):
@@ -163,3 +164,16 @@ def import_judge_assignment(sheet):
                 raw_score = cell.value
                 ja = Judge_Assignment(id, j_id, p_id, goal_score, plan_score, action_score, result_analysis_score, communication_score, raw_score)
                 ja.save()
+
+def export_jugde_assignment(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="judge_assignments.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Judge ID', 'Project ID', 'Raw Score'])
+
+    jas = Judge_Assignment.objects.all().values_list('judge_id', 'project_id', 'raw_score')
+    for ja in jas:
+        writer.writerow(list(ja))
+
+    return response
