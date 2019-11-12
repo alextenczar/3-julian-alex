@@ -6,11 +6,11 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
 
-        
+
     </head>
-    
+
     <body>
-        
+
         <header>
             <div class="nav-left">
                     <a href="{% url 'home' %}" id="logo">NHSEE</a>
@@ -18,6 +18,7 @@
                     <a href="{% url 'display_students' %}" role="button" class="b"> Student </a>
                     <a href="{% url 'display_projects' %}" role="button" class="b"> Project </a>
                     <a href="{% url 'display_judge_assignments' %}" role="button" class="b"> Judge Assignment </a>
+                    <a href="{% url 'import_file' %}" role="button" class="b"> Import File </a>
             </div>
         </header>
         <div>
