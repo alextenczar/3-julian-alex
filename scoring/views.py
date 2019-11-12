@@ -6,6 +6,8 @@ from openpyxl import load_workbook
 from string import ascii_uppercase
 from .convertStrToNum import float1, int1
 from django.http import HttpResponse
+from .views import *
+from . import methods
 
 # Create your views here.
 class HomeListView(ListView):
@@ -177,3 +179,11 @@ def export_jugde_assignment(request):
         writer.writerow(list(ja))
 
     return response
+def import_request(request):
+    # import function to run
+
+    # call function
+    methods.importFile() 
+
+    # return user to required page
+    return render(request, 'home.html')
