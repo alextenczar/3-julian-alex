@@ -1,29 +1,30 @@
 
 {% extends 'base.html' %}
     {% block content %}
-        <table  style="text-align:center;" cellspacing="10">
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+        <table class="sortable" style="text-align:center;" cellspacing="10">
             {% if button == "judges" %}
             <h3>Judges</h3>
-            <thread>
-                <tr>
+            <thead>
+                <tr class="item">
                     <th>Judge ID</th>
                     <th>Judge name</th>
                 </tr>
-            </thread>
+            </thead>
             {% endif %}
             {% if button == "students" %}
             <h3>Students</h3>
-            <thread>
+            <thead>
                 <tr>
                     <th>Student ID</th>
                     <th>School</th>
                     <th>Project ID</th>
                 </tr>
-            </thread>
+            </thead>
             {% endif %}
             {% if button == "projects" %}
             <h3>Projects</h3>
-            <thread>
+            <thead>
                 <tr>
                     <th>Project ID</th>
                     <th>Description</th>
@@ -38,11 +39,11 @@
                     <th>isef Score</th>
                     <th>isef Rank</th>
                 </tr>
-            </thread>
+            </thead>
             {% endif %}
             {% if button == "judge_assignments" %}
             <h3>Judge Assignments</h3>
-            <thread>
+            <thead>
                 <tr>
                     <th>Index</th>
                     <th>Judge ID</th>
@@ -54,25 +55,24 @@
                     <th>Communication Score</th>
                     <th>Raw Score</th>
                 </tr>
-            </thread>
+            </thead>
             {% endif %}
             <tbody>
                 {% for item in items %}
-                <thread>
-                <tr>
+                <tr class="item">
                     <td>{{item.pk}}</td>
                     <td>{{item.name}}</td>
                 </tr>
                 {% endfor %}
                 {% for student_item in student_items %}
-                <tr>
+                <tr class="item">
                     <td>{{student_item.pk}}</td>
                     <td>{{student_item.school}}</td>
                     <td>{{student_item.project_id.project_id}}</td>
                 </tr>
                 {% endfor %}
                 {% for project_item in project_items %}
-                <tr>
+                <tr class="item">
                     <td>{{project_item.pk}}</td>
                     <td>{{project_item.description}}</td>
                     <td>{{project_item.project_title}}</td>
@@ -88,7 +88,7 @@
                 </tr>
                 {% endfor %}
                 {% for ja_item in ja_items %}
-                <tr>
+                <tr class="item">
                     <td>{{ja_item.pk}}</td>
                     <td>{{ja_item.judge_id.judge_id}}</td>
                     <td>{{ja_item.project_id.project_id}}</td>
