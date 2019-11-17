@@ -3,7 +3,7 @@
 This web app imports cell data from a XLSM Spreadsheet and
 populate various data models within a Django database. The data is then able to be displayed and sorted by any model's attributes.
 
-##Prerequisites:
+## Prerequisites:
 ### Python 3.7 or newer.
 ### Django 2.2.5
 Installation:
