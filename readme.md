@@ -7,7 +7,7 @@ populate various data models within a Django database. The data is then able to 
 ### Python 3.7 or newer.
 ### Django 2.2.5
 Installation:
-$ pip install django Django==2.2.7
+$ pip install django Django==2.2.5
 
 ### import_export: https://django-import-export.readthedocs.io/en/latest/
 Installation:
@@ -19,14 +19,14 @@ $ pip install openpyxl
 
 ## Usage:
 ### Local Setup:
-1.Open your pip environment: "$ pipenv shell"
-2.Start the server: "$ python manage.py runserver"
+1. Open your pip environment: "$ pipenv shell"
+2. Start the server: "$ python manage.py runserver"
 
 ### Webapp Usage:
 In order to import the spreadsheet: Click "Import File" in the Navbar
-    1. Click "Choose File" and locate the spreadsheet file. (XLSM Format)
-    2. Click "Import"
-    3. Navigate back to one of the pages used to display the models. They should now be imported and display.
+1. Click "Choose File" and locate the spreadsheet file. (XLSM Format)
+2. Click "Import"
+3. Navigate back to one of the pages used to display the models. They should now be imported and display.
 
 Each Navbar link will display a table for each model.
 Clicking the headers of each column will sort by that column's object name.
