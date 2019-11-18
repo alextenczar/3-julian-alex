@@ -7,7 +7,6 @@ from string import ascii_uppercase
 from .convertStrToNum import float1, int1
 from django.http import HttpResponse
 from .views import *
-from . import methods
 
 # Create your views here.
 class HomeListView(ListView):
@@ -183,7 +182,7 @@ def import_request(request):
     # import function to run
 
     # call function
-    methods.importFile() 
+    methods.importFile()
 
     # return user to required page
     return render(request, 'home.html')
