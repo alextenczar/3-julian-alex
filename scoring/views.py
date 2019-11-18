@@ -178,11 +178,38 @@ def export_jugde_assignment(request):
         writer.writerow(list(ja))
 
     return response
+
 def import_request(request):
-    # import function to run
-
-    # call function
     methods.importFile()
-
-    # return user to required page
     return render(request, 'home.html')
+
+def cal_average_score():
+    done_list = []
+    jas = list(Judge_Assignment.objects.all())
+    for ja in jas:
+        if ja.project_id not in done_list:
+            score = 0
+            done_list.append(ja.project_id)
+            project = Judge_Assignment.objects.filter(project_id = ja.project_id.project_id)
+            for p in project:
+                score = score + p.raw_score
+            avg_score = score / len(list(project))
+            project = Project.objects.get(project_id = ja.project_id.project_id)
+            project.avg_score = avg_score
+            project.save()
+
+def sort_rank():
+    projects = list(Project.objects.all().order_by('-avg_score'))
+    for i in range(len(projects)):
+        if not isinstance(projects[i].avg_score,float):
+            projects[i].rank = None
+            continue
+        if i == 0:
+            projects[i].rank = i+1
+            continue
+        if projects[i].avg_score == projects[i-1].avg_score:
+            projects[i].rank = projects[i-1].rank
+            continue
+        projects[i].rank = i+1
+    for p in projects:
+        p.save()

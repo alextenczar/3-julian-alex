@@ -5,13 +5,18 @@ from import_export.admin import ImportExportModelAdmin
 from openpyxl import load_workbook
 from string import ascii_uppercase
 from .convertStrToNum import float1, int1
+from .views import *
 
 @admin.register(Judge, Project, Judge_Assignment, Student)
 class ViewAdmin(ImportExportModelAdmin):
-    Judge.objects.all().delete()
-    Project.objects.all().delete()
-    Student.objects.all().delete()
-    Judge_Assignment.objects.all().delete()
+    # Judge.objects.all().delete()
+    # Project.objects.all().delete()
+    # Student.objects.all().delete()
+    # Judge_Assignment.objects.all().delete()
+
+    # cal_average_score()
+    sort_rank()
+
     # wb = load_workbook(filename = 'Open Scoring UNH Ver09.xlsm', data_only=True)
     # sheet = wb.active
     # alphabet = ascii_uppercase
