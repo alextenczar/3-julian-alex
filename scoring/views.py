@@ -7,7 +7,7 @@ from string import ascii_uppercase
 from .convertStrToNum import float1, int1
 from django.http import HttpResponse
 from .views import *
-from . import methods
+from statistics import stdev, mean
 
 # Create your views here.
 class HomeListView(ListView):
@@ -118,9 +118,12 @@ def import_project(sheet):
         description = sheet['L'+str(s)].value
         project_title = sheet['J'+str(s)].value
         project_category = sheet['K'+str(s)].value
-        avg_score = sheet['LB'+str(s)].value
-        rank = sheet['LC'+str(s)].value
-        z_score = sheet['LD'+str(s)].value
+        avg_score = 0 #sheet['LB'+str(s)].value
+        rank = 0 #sheet['LC'+str(s)].value
+        z_score = 0 #sheet['LD'+str(s)].value
+        z_score_rank = 0
+        avg_01 = 0
+        avg_01_rank = 0
         scaled_score = sheet['LH'+str(s)].value
         scaled_rank = sheet['LJ'+str(s)].value
         scaled_z = sheet['LI'+str(s)].value
@@ -128,7 +131,7 @@ def import_project(sheet):
         isef_rank = sheet['LL'+str(s)].value
 
     #SAVE PROJECT
-        p = Project(project_id, description, project_title, project_category, float1(avg_score), int1(rank), float1(z_score), float1(scaled_score), float1(scaled_rank), float1(scaled_z), float1(isef_score), int1(isef_rank))
+        p = Project(project_id, description, project_title, project_category, float1(avg_score), int1(rank), float1(z_score), z_score_rank, avg_01, avg_01_rank, float1(scaled_score), float1(scaled_rank), float1(scaled_z), float1(isef_score), int1(isef_rank))
         p.save()
 
 def import_student(sheet):
@@ -179,11 +182,96 @@ def export_jugde_assignment(request):
         writer.writerow(list(ja))
 
     return response
+
 def import_request(request):
-    # import function to run
+    methods.importFile()
+    return render(request, 'home.html')
 
-    # call function
-    methods.importFile() 
+def remove_all_data(request):
+    Judge.objects.all().delete()
+    Project.objects.all().delete()
+    Student.objects.all().delete()
+    Judge_Assignment.objects.all().delete()
+    return render(request, 'home.html')
 
-    # return user to required page
+def cal_average_score():
+    done_list = []
+    jas = list(Judge_Assignment.objects.all())
+    for ja in jas:
+        if ja.project_id not in done_list:
+            score = 0
+            done_list.append(ja.project_id)
+            project = Judge_Assignment.objects.filter(project_id = ja.project_id.project_id)
+            for p in project:
+                score = score + p.raw_score
+            avg_score = score / len(list(project))
+            project = Project.objects.get(project_id = ja.project_id.project_id)
+            project.avg_score = avg_score
+            project.save()
+
+def sort_rank():
+    projects = list(Project.objects.all().order_by('-avg_score'))
+    for i in range(len(projects)):
+        if not isinstance(projects[i].avg_score,float):
+            projects[i].rank = None
+            continue
+        if i == 0:
+            projects[i].rank = i+1
+            continue
+        if projects[i].avg_score == projects[i-1].avg_score:
+            projects[i].rank = projects[i-1].rank
+            continue
+        projects[i].rank = i+1
+    for p in projects:
+        p.save()
+
+def cal_z_score():
+    jas = list(Judge_Assignment.objects.all())
+    for ja in jas:
+        jas_projects = list(Judge_Assignment.objects.filter(judge_id = ja.judge_id))
+        all_judge_scores = []
+        for jas_project in jas_projects:
+            all_judge_scores.append(jas_project.raw_score)
+        if not all_judge_scores:
+            continue
+        ja.z_score = (ja.raw_score - mean(all_judge_scores))/stdev(all_judge_scores)
+        ja.save()
+
+def sort_judge_rank():
+    judges = list(Judge.objects.all())
+    for judge in judges:
+        jas = list(Judge_Assignment.objects.filter(judge_id = judge.judge_id).order_by('-raw_score'))
+        for index in range(len(jas)):
+            jas[index].rank = (1-(1/(len(jas)-1))*index)
+            if index > 0 and (jas[index].raw_score == jas[index-1].raw_score):
+                jas[index].rank = jas[index-1].rank
+            jas[index].save()
+
+def cal_avg_z_score():
+    projects = list(Project.objects.all())
+    for project in projects:
+        jas_z_score = list(Judge_Assignment.objects.filter(project_id = project.project_id).values_list('z_score', flat=True))
+        if not jas_z_score:
+            continue
+        project.z_score = mean(jas_z_score)
+        project.save()
+
+def sort_z_score_rank():
+    projects = list(Project.objects.all().order_by('-z_score'))
+    for index in range(len(projects)):
+        if projects[index].z_score is None:
+            continue
+        projects[index].z_score_rank = index+1
+        if projects[index].z_score == projects[index-1].z_score:
+            projects[index].z_score_rank = projects[index-1].z_score_rank
+        projects[index].save()
+
+def calculate_scores(request):
+    cal_average_score()
+    sort_rank()
+    cal_z_score()
+    sort_judge_rank()
+    cal_avg_z_score()
+    sort_z_score_rank()
+
     return render(request, 'home.html')
