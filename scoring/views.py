@@ -180,12 +180,7 @@ def export_jugde_assignment(request):
     jas = Judge_Assignment.objects.all().values_list('judge_id', 'project_id', 'raw_score')
     for ja in jas:
         writer.writerow(list(ja))
-
     return response
-
-def import_request(request):
-    methods.importFile()
-    return render(request, 'home.html')
 
 def remove_all_data(request):
     Judge.objects.all().delete()
@@ -266,6 +261,18 @@ def sort_z_score_rank():
             projects[index].z_score_rank = projects[index-1].z_score_rank
         projects[index].save()
 
+def cal_avg_01():
+    projects = list(Project.objects.all())
+    for project in projects:
+        jas = Judge_Assignment.objects.filter(project_id = project.project_id)
+        all_judge_z_ranks = []
+        for ja in jas:
+            all_judge_z_ranks.append(ja.rank)
+        if not all_judge_z_ranks:
+            continue
+        project.avg_01 = mean(all_judge_z_ranks)
+        project.save()
+
 def calculate_scores(request):
     cal_average_score()
     sort_rank()
@@ -273,5 +280,5 @@ def calculate_scores(request):
     sort_judge_rank()
     cal_avg_z_score()
     sort_z_score_rank()
-
+    cal_avg_01()
     return render(request, 'home.html')
