@@ -19,7 +19,7 @@ class ViewAdmin(ImportExportModelAdmin):
     # cal_z_score()
     # sort_judge_rank()
     # cal_avg_z_score()
-    sort_z_score_rank()
+    #sort_z_score_rank()
 
     # wb = load_workbook(filename = 'Open Scoring UNH Ver09.xlsm', data_only=True)
     # sheet = wb.active
