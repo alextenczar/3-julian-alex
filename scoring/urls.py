@@ -12,5 +12,6 @@ urlpatterns = [
     path('import_request/', import_request, name='import_request'),
     path('display_students/', display_students, name='display_students'),
     path('import_file/', import_file, name='import_file'),
-    path('export_jugde_assignment/', export_jugde_assignment, name='export_jugde_assignment')
+    path('export_jugde_assignment/', export_jugde_assignment, name='export_jugde_assignment'),
+    path('remove_all_data/', remove_all_data, name='remove_all_data')
 ]

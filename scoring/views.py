@@ -7,6 +7,7 @@ from string import ascii_uppercase
 from .convertStrToNum import float1, int1
 from django.http import HttpResponse
 from .views import *
+from statistics import stdev, mean
 
 # Create your views here.
 class HomeListView(ListView):
@@ -183,6 +184,13 @@ def import_request(request):
     methods.importFile()
     return render(request, 'home.html')
 
+def remove_all_data(request):
+    Judge.objects.all().delete()
+    Project.objects.all().delete()
+    Student.objects.all().delete()
+    Judge_Assignment.objects.all().delete()
+    return render(request, 'home.html')
+
 def cal_average_score():
     done_list = []
     jas = list(Judge_Assignment.objects.all())
@@ -213,3 +221,17 @@ def sort_rank():
         projects[i].rank = i+1
     for p in projects:
         p.save()
+
+def cal_z_score():
+    projects = list(Project.objects.all())
+    for project in projects:
+        jas = list(Judge_Assignment.objects.filter(project_id = project.project_id))
+        for ja in jas:
+            jas_projects = list(Judge_Assignment.objects.filter(judge_id = ja.judge_id))
+            all_judge_scores = []
+            for jas_project in jas_projects:
+                all_judge_scores.append(jas_project.raw_score)
+            if not all_judge_scores:
+                continue
+            ja.z_score = (ja.raw_score - mean(all_judge_scores))/stdev(all_judge_scores)
+            ja.save()

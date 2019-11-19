@@ -36,3 +36,5 @@ class Judge_Assignment(models.Model):
     result_analysis_score = models.IntegerField(null=True)
     communication_score = models.IntegerField(null=True)
     raw_score = models.IntegerField(null=True)
+    z_score = models.FloatField(null=True)
+    rank = models.FloatField(null=True)

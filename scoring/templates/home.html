@@ -54,6 +54,8 @@
                     <th>Result Analyis Score</th>
                     <th>Communication Score</th>
                     <th>Raw Score</th>
+                    <th>Z Score</th>
+                    <th>Rank Score</th>
                 </tr>
             </thead>
             {% endif %}
@@ -98,6 +100,8 @@
                     <td>{{ja_item.result_analysis_score}}</td>
                     <td>{{ja_item.communication_score}}</td>
                     <td>{{ja_item.raw_score}}</td>
+                    <td>{{ja_item.z_score|floatformat:3}}</td>
+                    <td>{{ja_item.rank_score|floatformat:2}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
