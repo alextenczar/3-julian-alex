@@ -252,3 +252,14 @@ def cal_avg_z_score():
             continue
         project.z_score = mean(jas_z_score)
         project.save()
+
+def sort_z_score_rank():
+    projects = list(Project.objects.all().order_by('-z_score'))
+    for index in range(len(projects)):
+        if projects[index].z_score is None:
+            continue
+        projects[index].z_score_rank = index+1
+        if projects[index].z_score == projects[index-1].z_score:
+            projects[index].z_score_rank = projects[index-1].z_score_rank
+        print(projects[index].project_id + ' ' + str(projects[index].z_score_rank))
+        # projects[index].save()
