@@ -118,9 +118,12 @@ def import_project(sheet):
         description = sheet['L'+str(s)].value
         project_title = sheet['J'+str(s)].value
         project_category = sheet['K'+str(s)].value
-        avg_score = sheet['LB'+str(s)].value
-        rank = sheet['LC'+str(s)].value
-        z_score = sheet['LD'+str(s)].value
+        avg_score = 0 #sheet['LB'+str(s)].value
+        rank = 0 #sheet['LC'+str(s)].value
+        z_score = 0 #sheet['LD'+str(s)].value
+        z_score_rank = 0
+        avg_01 = 0
+        avg_01_rank = 0
         scaled_score = sheet['LH'+str(s)].value
         scaled_rank = sheet['LJ'+str(s)].value
         scaled_z = sheet['LI'+str(s)].value
@@ -128,7 +131,7 @@ def import_project(sheet):
         isef_rank = sheet['LL'+str(s)].value
 
     #SAVE PROJECT
-        p = Project(project_id, description, project_title, project_category, float1(avg_score), int1(rank), float1(z_score), float1(scaled_score), float1(scaled_rank), float1(scaled_z), float1(isef_score), int1(isef_rank))
+        p = Project(project_id, description, project_title, project_category, float1(avg_score), int1(rank), float1(z_score), z_score_rank, avg_01, avg_01_rank, float1(scaled_score), float1(scaled_rank), float1(scaled_z), float1(isef_score), int1(isef_rank))
         p.save()
 
 def import_student(sheet):
@@ -262,3 +265,13 @@ def sort_z_score_rank():
         if projects[index].z_score == projects[index-1].z_score:
             projects[index].z_score_rank = projects[index-1].z_score_rank
         projects[index].save()
+
+def calculate_scores(request):
+    cal_average_score()
+    sort_rank()
+    cal_z_score()
+    sort_judge_rank()
+    cal_avg_z_score()
+    sort_z_score_rank()
+
+    return render(request, 'home.html')
