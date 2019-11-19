@@ -233,3 +233,13 @@ def cal_z_score():
             continue
         ja.z_score = (ja.raw_score - mean(all_judge_scores))/stdev(all_judge_scores)
         ja.save()
+
+def sort_judge_rank():
+    judges = list(Judge.objects.all())
+    for judge in judges:
+        jas = list(Judge_Assignment.objects.filter(judge_id = judge.judge_id).order_by('-raw_score'))
+        for index in range(len(jas)):
+            jas[index].rank = (1-(1/(len(jas)-1))*index)
+            if index > 0 and (jas[index].raw_score == jas[index-1].raw_score):
+                jas[index].rank = jas[index-1].rank
+            jas[index].save()
