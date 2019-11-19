@@ -13,11 +13,16 @@ class Project(models.Model):
     avg_score = models.FloatField(null=True)
     rank = models.IntegerField(null=True)
     z_score = models.FloatField(null=True)
+    z_score_rank = models.IntegerField(null=True)
+    avg_01 = models.FloatField(null=True)
+    avg_01_rank = models.IntegerField(null=True)
     scaled_score = models.FloatField(null=True)
     scaled_rank = models.FloatField(null=True)
     scaled_z = models.FloatField(null=True)
     isef_score = models.FloatField(null=True)
     isef_rank = models.IntegerField(null=True)
+    category_rank = models.IntegerField(null=True)
+    fair_rank = models.IntegerField(null=True)
 
 class Student(models.Model):
     id = models.CharField(max_length=30, primary_key=True)
