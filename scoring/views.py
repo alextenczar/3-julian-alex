@@ -261,5 +261,4 @@ def sort_z_score_rank():
         projects[index].z_score_rank = index+1
         if projects[index].z_score == projects[index-1].z_score:
             projects[index].z_score_rank = projects[index-1].z_score_rank
-        print(projects[index].project_id + ' ' + str(projects[index].z_score_rank))
-        # projects[index].save()
+        projects[index].save()
