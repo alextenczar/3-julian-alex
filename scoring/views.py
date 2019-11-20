@@ -314,6 +314,20 @@ def cal_scaled_z_score():
         project.scaled_z = ((project.z_score - min)/rangevalue)*25 + 25
         project.save()
 
+def cal_scaled_rank():
+    projects = list(Project.objects.all())
+    for index in range(len(projects)):
+        min = list(Project.objects.all().order_by('avg_01'))[index].avg_01
+        if min is not None:
+            break
+    max = list(Project.objects.all().order_by('-avg_01'))[0].avg_01
+    rangevalue = max - min
+    for project in projects:
+        if project.avg_01_rank is None:
+            continue
+        project.scaled_rank = ((project.avg_01 - min)/rangevalue)*25 + 25
+        project.save()
+
 def calculate_scores(request):
     cal_average_score()
     sort_rank()
@@ -325,4 +339,5 @@ def calculate_scores(request):
     sort_avg_01_rank()
     cal_scaled_score()
     cal_scaled_z_score()
+    cal_scaled_rank()
     return render(request, 'home.html')
