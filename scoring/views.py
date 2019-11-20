@@ -124,11 +124,11 @@ def import_project(sheet):
         z_score_rank = None
         avg_01 = None
         avg_01_rank = None
-        scaled_score = sheet['LH'+str(s)].value
-        scaled_rank = sheet['LJ'+str(s)].value
-        scaled_z = sheet['LI'+str(s)].value
-        isef_score = sheet['LK'+str(s)].value
-        isef_rank = sheet['LL'+str(s)].value
+        scaled_score = None #sheet['LH'+str(s)].value
+        scaled_rank = None #sheet['LJ'+str(s)].value
+        scaled_z = None #sheet['LI'+str(s)].value
+        isef_score = None #sheet['LK'+str(s)].value
+        isef_rank = None #sheet['LL'+str(s)].value
 
     #SAVE PROJECT
         p = Project(project_id, description, project_title, project_category, float1(avg_score), int1(rank), float1(z_score), z_score_rank, avg_01, avg_01_rank, float1(scaled_score), float1(scaled_rank), float1(scaled_z), float1(isef_score), int1(isef_rank))
@@ -336,15 +336,31 @@ def cal_isef_score():
         project.isef_score = (project.scaled_score + project.scaled_rank + project.scaled_z) - 50
         project.save()
 
-def cal_isef_rank():
+def sort_isef_rank():
     projects = list(Project.objects.all().order_by('-isef_score'))
     for index in range(len(projects)):
         if projects[index].isef_score is None:
             continue
-        projects[index].rank = index+1
+        projects[index].isef_rank = index+1
         if index > 0 and projects[index].isef_score == projects[index-1].isef_score:
-            projects[index].rank = projects[index-1].rank
-        project[index].save()
+            projects[index].isef_rank = projects[index-1].isef_rank
+        projects[index].fair_rank = projects[index].isef_rank
+        projects[index].save()
+
+def sort_category_rank():
+    projects = list(Project.objects.all().order_by('project_category', '-isef_score'))
+    rank = 1
+    for index in range(len(projects)):
+        if index >= 0 and projects[index].project_category != projects[index-1].project_category:
+            rank = 1
+        projects[index].category_rank = rank
+        if projects[index].isef_score is None:
+            continue
+        if index > 0 and projects[index].isef_score == projects[index-1].isef_score:
+            if projects[index].project_category == projects[index-1].project_category:
+                projects[index].category_rank = projects[index-1].category_rank
+        rank = rank + 1
+        projects[index].save()
 
 def calculate_scores(request):
     cal_average_score()
@@ -359,5 +375,6 @@ def calculate_scores(request):
     cal_scaled_z_score()
     cal_scaled_rank()
     cal_isef_score()
-    cal_isef_rank()
+    sort_isef_rank()
+    sort_category_rank()
     return render(request, 'home.html')

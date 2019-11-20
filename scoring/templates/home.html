@@ -38,10 +38,12 @@
                     <th>Average 0-1</th>
                     <th>Average 0-1 Rank</th>
                     <th>Scaled Score</th>
-                    <th>Scaled Rank</th>
                     <th>Scaled Z</th>
-                    <th>isef Score</th>
-                    <th>isef Rank</th>
+                    <th>Scaled Rank</th>
+                    <th>ISEF Score</th>
+                    <th>ISEF Rank</th>
+                    <th>Category Rank</th>
+                    <th>Fair Rank</th>
                 </tr>
             </thead>
             {% endif %}
@@ -90,10 +92,12 @@
                     <td>{{project_item.avg_01|floatformat:3}}</td>
                     <td>{{project_item.avg_01_rank}}</td>
                     <td>{{project_item.scaled_score|floatformat:3}}</td>
-                    <td>{{project_item.scaled_rank|floatformat:3}}</td>
                     <td>{{project_item.scaled_z|floatformat:3}}</td>
+                    <td>{{project_item.scaled_rank|floatformat:3}}</td>
                     <td>{{project_item.isef_score|floatformat:3}}</td>
                     <td>{{project_item.isef_rank}}</td>
+                    <td>{{project_item.category_rank}}</td>
+                    <td>{{project_item.fair_rank}}</td>
                 </tr>
                 {% endfor %}
                 {% for ja_item in ja_items %}
