@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
-from . import methods
+import scoring.views
+from scoring.views import *
 #from .views import HomeListView
 
 urlpatterns = [
@@ -10,7 +11,6 @@ urlpatterns = [
     path('display_judges/', display_judges, name='display_judges'),
     path('display_projects/', display_projects, name='display_projects'),
     path('display_judge_assignments/', display_judge_assignments, name='display_judge_assignments'),
-    path('import_request/', import_request, name='import_request'),
     path('display_students/', display_students, name='display_students'),
     path('import_file/', import_file, name='import_file'),
     path('export_jugde_assignment/', export_jugde_assignment, name='export_jugde_assignment')
