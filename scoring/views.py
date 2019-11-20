@@ -118,12 +118,12 @@ def import_project(sheet):
         description = sheet['L'+str(s)].value
         project_title = sheet['J'+str(s)].value
         project_category = sheet['K'+str(s)].value
-        avg_score = 0 #sheet['LB'+str(s)].value
-        rank = 0 #sheet['LC'+str(s)].value
-        z_score = 0 #sheet['LD'+str(s)].value
-        z_score_rank = 0
-        avg_01 = 0
-        avg_01_rank = 0
+        avg_score = None #sheet['LB'+str(s)].value
+        rank = None #sheet['LC'+str(s)].value
+        z_score = None #sheet['LD'+str(s)].value
+        z_score_rank = None
+        avg_01 = None
+        avg_01_rank = None
         scaled_score = sheet['LH'+str(s)].value
         scaled_rank = sheet['LJ'+str(s)].value
         scaled_z = sheet['LI'+str(s)].value
@@ -149,11 +149,11 @@ def import_student(sheet):
 
 def import_judge_assignment(sheet):
     #JUDGE ASSIGNMENT
-    goal_score = 0
-    plan_score = 0
-    action_score = 0
-    result_analysis_score = 0
-    communication_score = 0
+    goal_score = None
+    plan_score = None
+    action_score = None
+    result_analysis_score = None
+    communication_score = None
     # raw_score = goal_score + plan_score + action_score + result_analysis_score + communication_score
 
     #SAVE JUDGE_ASSIGNMENT
@@ -200,6 +200,8 @@ def cal_average_score():
             for p in project:
                 score = score + p.raw_score
             avg_score = score / len(list(project))
+            if score == 0:
+                continue
             project = Project.objects.get(project_id = ja.project_id.project_id)
             project.avg_score = avg_score
             project.save()
@@ -207,6 +209,7 @@ def cal_average_score():
 def sort_rank():
     projects = list(Project.objects.all().order_by('-avg_score'))
     for i in range(len(projects)):
+        projects[i].rank = i+1
         if not isinstance(projects[i].avg_score,float):
             projects[i].rank = None
             continue
@@ -216,9 +219,7 @@ def sort_rank():
         if projects[i].avg_score == projects[i-1].avg_score:
             projects[i].rank = projects[i-1].rank
             continue
-        projects[i].rank = i+1
-    for p in projects:
-        p.save()
+        projects[i].save()
 
 def cal_z_score():
     jas = list(Judge_Assignment.objects.all())
@@ -237,6 +238,8 @@ def sort_judge_rank():
     for judge in judges:
         jas = list(Judge_Assignment.objects.filter(judge_id = judge.judge_id).order_by('-raw_score'))
         for index in range(len(jas)):
+            if jas[index].raw_score is None:
+                continue
             jas[index].rank = (1-(1/(len(jas)-1))*index)
             if index > 0 and (jas[index].raw_score == jas[index-1].raw_score):
                 jas[index].rank = jas[index-1].rank
@@ -273,6 +276,16 @@ def cal_avg_01():
         project.avg_01 = mean(all_judge_z_ranks)
         project.save()
 
+def sort_avg_01_rank():
+    projects = list(Project.objects.all().order_by('-avg_01'))
+    for index in range(len(projects)):
+        if projects[index].avg_01 is None:
+            continue
+        projects[index].avg_01_rank = index+1
+        if projects[index].avg_01 == projects[index-1].avg_01:
+            projects[index].avg_01_rank = projects[index-1].avg_01_rank
+        projects[index].save()
+
 def calculate_scores(request):
     cal_average_score()
     sort_rank()
@@ -281,4 +294,5 @@ def calculate_scores(request):
     cal_avg_z_score()
     sort_z_score_rank()
     cal_avg_01()
+    sort_avg_01_rank()
     return render(request, 'home.html')
