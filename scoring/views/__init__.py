@@ -12,4 +12,3 @@ from scoring.views.import_student import *
 
 from scoring.views.export_judge_assignment import *
 from scoring.views.import_judge_assignment import *
-
