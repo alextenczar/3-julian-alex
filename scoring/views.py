@@ -336,6 +336,16 @@ def cal_isef_score():
         project.isef_score = (project.scaled_score + project.scaled_rank + project.scaled_z) - 50
         project.save()
 
+def cal_isef_rank():
+    projects = list(Project.objects.all().order_by('-isef_score'))
+    for index in range(len(projects)):
+        if projects[index].isef_score is None:
+            continue
+        projects[index].rank = index+1
+        if index > 0 and projects[index].isef_score == projects[index-1].isef_score:
+            projects[index].rank = projects[index-1].rank
+        project[index].save()
+
 def calculate_scores(request):
     cal_average_score()
     sort_rank()
@@ -349,4 +359,5 @@ def calculate_scores(request):
     cal_scaled_z_score()
     cal_scaled_rank()
     cal_isef_score()
+    cal_isef_rank()
     return render(request, 'home.html')
