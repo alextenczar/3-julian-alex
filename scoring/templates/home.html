@@ -34,11 +34,16 @@
                     <th>avg Score</th>
                     <th>Rank</th>
                     <th>Z Score</th>
+                    <th>Z Score Rank</th>
+                    <th>Average 0-1</th>
+                    <th>Average 0-1 Rank</th>
                     <th>Scaled Score</th>
-                    <th>Scaled Rank</th>
                     <th>Scaled Z</th>
-                    <th>isef Score</th>
-                    <th>isef Rank</th>
+                    <th>Scaled Rank</th>
+                    <th>ISEF Score</th>
+                    <th>ISEF Rank</th>
+                    <th>Category Rank</th>
+                    <th>Fair Rank</th>
                 </tr>
             </thead>
             {% endif %}
@@ -55,6 +60,8 @@
                     <th>Result Analyis Score</th>
                     <th>Communication Score</th>
                     <th>Raw Score</th>
+                    <th>Z Score</th>
+                    <th>Rank Score</th>
                 </tr>
             </thead>
             {% endif %}
@@ -78,14 +85,19 @@
                     <td>{{project_item.description}}</td>
                     <td>{{project_item.project_title}}</td>
                     <td>{{project_item.project_category}}</td>
-                    <td>{{project_item.avg_score}}</td>
+                    <td>{{project_item.avg_score|floatformat:2}}</td>
                     <td>{{project_item.rank}}</td>
                     <td>{{project_item.z_score|floatformat:3}}</td>
+                    <td>{{project_item.z_score_rank}}</td>
+                    <td>{{project_item.avg_01|floatformat:3}}</td>
+                    <td>{{project_item.avg_01_rank}}</td>
                     <td>{{project_item.scaled_score|floatformat:3}}</td>
-                    <td>{{project_item.scaled_rank|floatformat:3}}</td>
                     <td>{{project_item.scaled_z|floatformat:3}}</td>
+                    <td>{{project_item.scaled_rank|floatformat:3}}</td>
                     <td>{{project_item.isef_score|floatformat:3}}</td>
                     <td>{{project_item.isef_rank}}</td>
+                    <td>{{project_item.category_rank}}</td>
+                    <td>{{project_item.fair_rank}}</td>
                 </tr>
                 {% endfor %}
                 {% for ja_item in ja_items %}
@@ -99,6 +111,8 @@
                     <td>{{ja_item.result_analysis_score}}</td>
                     <td>{{ja_item.communication_score}}</td>
                     <td>{{ja_item.raw_score}}</td>
+                    <td>{{ja_item.z_score|floatformat:3}}</td>
+                    <td>{{ja_item.rank|floatformat:2}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

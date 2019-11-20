@@ -2,7 +2,7 @@ import csv
 from scoring.models import Judge_Assignment
 from django.http import HttpResponse
 
-def export_jugde_assignment(request):
+def export_judge_assignment(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="judge_assignments.csv"'
 
