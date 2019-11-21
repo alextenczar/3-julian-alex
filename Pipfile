@@ -23,11 +23,7 @@ et_xmlfile = "==1.0.1"
 MarkupPy = "==1.14"
 PyYAML = "==5.1.2"
 dj-database-url = "*"
-pyscopg2 = "*"
-psycopg2 = "*"
-python3-dev = "*"
-pg-config = "*"
-django-heroku = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
