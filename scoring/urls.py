@@ -18,3 +18,4 @@ urlpatterns = [
     path('remove_all_data/', remove_all_data, name='remove_all_data'),
     path('calculate_scores/', calculate_scores, name='calculate_scores')
 ]
+#test
