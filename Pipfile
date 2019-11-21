@@ -24,6 +24,10 @@ MarkupPy = "==1.14"
 PyYAML = "==5.1.2"
 dj-database-url = "*"
 pyscopg2 = "*"
+psycopg2 = "*"
+python3-dev = "*"
+pg-config = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
