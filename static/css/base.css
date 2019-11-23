@@ -23,6 +23,7 @@ header {
 footer {
     text-align: center;
     color: white;
+    background-color: slategray;
     height: 2em;
     line-height: 2em;
 }
