@@ -13,7 +13,7 @@
 
         <header>
             <div class="nav-left">
-                    <a href="{% url 'home' %}" id="logo">NHSEE</a>
+                    <a href="{% url 'display_projects' %}" id="logo">NHSEE</a>
                     <a href="{% url 'display_judges'  %}" role="button" class="b"> Judge </a>
                     <a href="{% url 'display_students' %}" role="button" class="b"> Student </a>
                     <a href="{% url 'display_projects' %}" role="button" class="b"> Project </a>
@@ -24,9 +24,12 @@
                     <a href="{% url 'calculate_scores' %}" role="button" class="b" >Calculate Scores</a>
             </div>
         </header>
-        <div>
+        <div id="content">
             {% block content %}
             {% endblock content%}
         </div>
+        <footer>
+                <span>Julian Quach and Alex Tenczar 2019</span>  
+        </footer>
     </body>
 </html>
