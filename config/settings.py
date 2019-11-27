@@ -76,18 +76,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='postgres://ybebttevvzzkwr:f45b14c96637546232cc01391099dda6a594298db6fb9a56f4e7e2c2c12383b7@ec2-184-73-176-11.compute-1.amazonaws.com:5432/dec1ha1pit7qja')}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nhsee_db',
-        'USER': 'comp805',
-        'PASSWORD': 'teamthree',
-        'HOST': 'localhost',
-        'PORT': '5432',
-
-    }
-}
 
 
 # Password validation
