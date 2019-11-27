@@ -1,12 +1,31 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 18px;
+    color: #424242;
+    background-color: slategray;
+    margin: 0em;
+    padding: 0em;
+}
+
+#content {
+    padding: .5em 1em 1em 1em;
+    background-color: white;
 }
 
 header {
-    border-bottom: 1px solid #999;
     margin-bottom: 0em;
     display: flex;
+    background-color: slategrey;
+    margin: 0em;
+    padding: .5em;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    background-color: slategray;
+    height: 2em;
+    line-height: 2em;
 }
 
 table {
@@ -63,7 +82,7 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 
 #logo {
     font-size: 2em;
-    color: red;
+    color: white;
     text-decoration: none;
 }
 
@@ -82,4 +101,9 @@ th, td {
 
 h3 {
     margin: .5em 0px .5em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }

@@ -24,6 +24,8 @@ MarkupPy = "==1.14"
 PyYAML = "==5.1.2"
 dj-database-url = "*"
 psycopg2-binary = "*"
+css = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
