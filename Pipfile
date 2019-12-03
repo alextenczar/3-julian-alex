@@ -26,6 +26,7 @@ dj-database-url = "*"
 psycopg2-binary = "*"
 css = "*"
 whitenoise = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
