@@ -6,7 +6,10 @@ def cal_scaled_score():
         min = list(Project.objects.all().order_by('avg_score'))[index].avg_score
         if min is not None:
             break
-    max = list(Project.objects.all().order_by('-avg_score'))[0].avg_score
+    for index in range(len(projects)):
+        max = list(Project.objects.all().order_by('-avg_score'))[index].avg_score
+        if max is not None:
+            break
     rangevalue = max - min
     for project in projects:
         if project.avg_score is None:
