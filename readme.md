@@ -1,5 +1,5 @@
 # COMP805 Project: NHSEE Web App
-#URL: https://nhsee-team3.herokuapp.com
+# URL: https://nhsee-team3.herokuapp.com
 ## Project Team 3: Julian Quach and Alex Tenczar
 This web app imports cell data from a XLSM Spreadsheet and
 populate various data models within a Django database. The data is then able to be displayed and sorted by any model's attributes.
