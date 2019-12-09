@@ -7,3 +7,6 @@ class Student(models.Model):
     #last_name = models.CharField()
     school = models.CharField(max_length=100)
     project_id = models.ForeignKey(Project, to_field='project_id', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id

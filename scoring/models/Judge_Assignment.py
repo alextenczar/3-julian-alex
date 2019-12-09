@@ -14,3 +14,6 @@ class Judge_Assignment(models.Model):
     raw_score = models.IntegerField(null=True)
     z_score = models.FloatField(null=True)
     rank = models.FloatField(null=True)
+
+    def __str__(self):
+        return self.ja_id
