@@ -1,8 +1,14 @@
-# COMP805 Project: NHSEE Web App
-# URL: https://nhsee-team3.herokuapp.com
-## Project Team 3: Julian Quach and Alex Tenczar
-This web app imports cell data from a XLSM Spreadsheet and
-populate various data models within a Django database. The data is then able to be displayed and sorted by any model's attributes.
+## COMP805 Project: NHSEE Web App
+
+### Project Team 3: Julian Quach and Alex Tenczar
+
+### Heroku link: https://nhsee-team3.herokuapp.com/
+
+### Description:
+
+This web app imports cell data from a XLSM Spreadsheet and populates various data models within a Django PostGreSQL database. The web app is then able to display the models and sort them by any attribute. The web app can then calculate all scores and rank projects according to NHSEE's formulas and provided data. Our database can be locally and remotely accessed.
+
+![](https://imgur.com/0q1ZSsn.png)
 
 ## Prerequisites:
 #### Python 3.7 or newer
@@ -29,3 +35,54 @@ In order to import the spreadsheet: Click "Import File" in the Navbar
 
 Each Navbar link will display a table for each model.
 Clicking the headers of each column will sort by that column's object name.
+
+## Overall Project Status:
+#### Status: 95% Functional
+#### Our project is able to do all essential tasks proposed.
+
+Import provided spreadsheet
+
+Display Imported Data
+
+Modify Data if necessary
+
+Calculate all ranking and scoring values using provided data
+
+Sort data by value according to user's choice
+
+Display data remotely on a server (accessible to anyone with URL)
+
+Display top 5 projects by score and category
+
+### Additional Feature Statuses:
+
+### 1. Scoring page:
+#### Status: Incomplete
+Able to create the scoring page using ModelForm, having problems with saving objects.
+
+## Special Thanks to:
+
+#### The Python Software Foundation:
+https://www.python.org
+
+#### The Django Software Foundation:
+https://www.djangoproject.com
+
+#### Eric Gazoni and Charlie Clark for OpenPyxl:
+https://openpyxl.readthedocs.io/en/stable/
+
+#### Stuart Langridge for Sorttable:
+https://kryogenix.org/code/browser/sorttable/
+
+#### Kenneth Reitz for Pipenv:
+https://pipenv.kennethreitz.org/en/latest/
+
+#### PostgreSQL Global Development Group:
+https://www.postgresql.org
+
+#### NHSEE for giving us a chance to work on a real life project:
+https://nhsee.org
+
+#### Lastly, thank you to all COMP705/805 Teams and Professor Mihaela Sabin!
+
+
