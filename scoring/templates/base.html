@@ -5,15 +5,13 @@
         <title>NHSEE</title>
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
-
-
     </head>
 
     <body>
 
         <header>
             <div class="nav-left">
-                    <a href="{% url 'display_projects' %}" id="logo">NHSEE</a>
+                    <a href="{% url 'add_score' %}" id="logo">NHSEE</a>
                     <a href="{% url 'display_judges'  %}" role="button" class="b"> Judge </a>
                     <a href="{% url 'display_students' %}" role="button" class="b"> Student </a>
                     <a href="{% url 'display_projects' %}" role="button" class="b"> Project </a>
@@ -22,6 +20,7 @@
                     <a href="{% url 'export_judge_assignment' %}" role="button" class="b" >Export Judge Assignment</a>
                     <a href="{% url 'remove_all_data' %}" role="button" class="b" >Remove All Data</a>
                     <a href="{% url 'calculate_scores' %}" role="button" class="b" >Calculate Scores</a>
+                    <a href="{% url 'display_top_projects' %}" role="button" class="b" >Top Projects</a>
             </div>
         </header>
         <div id="content">
@@ -29,7 +28,7 @@
             {% endblock content%}
         </div>
         <footer>
-                <span>Julian Quach and Alex Tenczar 2019</span>  
+                <span>Julian Quach and Alex Tenczar 2019</span>
         </footer>
     </body>
 </html>
