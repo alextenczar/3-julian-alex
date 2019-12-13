@@ -4,6 +4,7 @@ from scoring.views.display.display_judges import *
 from scoring.views.display.display_projects import *
 from scoring.views.display.display_students import *
 from scoring.views.display.display_judge_assignments import *
+from scoring.views.display.display_scoring import *
 
 from scoring.views.import_m.import_data import *
 from scoring.views.import_m.import_file import *
