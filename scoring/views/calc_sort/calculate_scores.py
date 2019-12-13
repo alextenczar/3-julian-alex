@@ -1,3 +1,4 @@
+from scoring.views.calc_sort.cal_raw_score import cal_raw_score
 from scoring.views.calc_sort.cal_average_score import cal_average_score
 from scoring.views.calc_sort.sort_rank import sort_rank
 from scoring.views.calc_sort.cal_z_score import cal_z_score
@@ -19,6 +20,7 @@ from django.shortcuts import render
 
 
 def calculate_scores(request):
+    cal_raw_score()
     cal_average_score()
     sort_rank()
     cal_z_score()

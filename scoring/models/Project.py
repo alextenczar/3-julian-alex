@@ -18,3 +18,6 @@ class Project(models.Model):
     isef_rank = models.IntegerField(null=True)
     category_rank = models.IntegerField(null=True)
     fair_rank = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.project_id + " : " + self.project_title
