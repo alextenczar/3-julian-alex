@@ -1,7 +1,8 @@
 
 {% extends 'base.html' %}
     {% block content %}
-        <script src="/static/sorttable.js"></script>
+        <script src="static/sorttable.js"></script>
+
         <table class="sortable" id="table" style="text-align:center;" cellspacing="10">
             {% if button == "judges" %}
             <h3>Judges</h3>
@@ -64,23 +65,6 @@
                 </tr>
             </thead>
             {% endif %}
-            {% if button == "top_projects" %}
-            <h3>Top Projects</h3>
-            <thead>
-                <tr>
-                    <th>Project ID</th>
-                    <th>Description</th>
-                    <th>Project Title</th>
-                    <th>Project Category</th>
-                    <th>ISEF Score</th>
-                    <th>ISEF Rank</th>
-                    <th>Category Rank</th>
-                    <th>Fair Rank</th>
-                </tr>
-            </thead>
-            {% endif %}
-
-
             <tbody>
                 {% for item in items %}
                 <tr class="item">
@@ -130,44 +114,6 @@
                     <td>{{ja_item.z_score|floatformat:3}}</td>
                     <td>{{ja_item.rank|floatformat:2}}</td>
                 </tr>
-                {% endfor %}
-                {% for top in top_all %}
-                <tr class="item">
-                    <td>{{top.pk}}</td>
-                    <td>{{top.description}}</td>
-                    <td>{{top.project_title}}</td>
-                    <td>{{top.project_category}}</td>
-                    <td>{{top.isef_score|floatformat:3}}</td>
-                    <td>{{top.isef_rank}}</td>
-                    <td>{{top.category_rank}}</td>
-                    <td>{{top.fair_rank}}</td>
-                </tr>
-                {% endfor %}
-                {% for top_all_category in top_all_categories %}
-                <tr>
-                    <td></td>
-                    <td style="text-align:left;">
-                        <h2>{{top_all_category.first.project_category}}</h2>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                    {% for top in top_all_category %}
-                    <tr class="item">
-                        <td>{{top.pk}}</td>
-                        <td>{{top.description}}</td>
-                        <td>{{top.project_title}}</td>
-                        <td>{{top.project_category}}</td>
-                        <td>{{top.isef_score|floatformat:3}}</td>
-                        <td>{{top.isef_rank}}</td>
-                        <td>{{top.category_rank}}</td>
-                        <td>{{top.fair_rank}}</td>
-                    </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
