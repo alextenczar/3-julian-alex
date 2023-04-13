@@ -2,8 +2,6 @@
 
 ### Project Team 3: Julian Quach and Alex Tenczar
 
-### Heroku link: https://nhsee-team3.herokuapp.com/
-
 ### Description:
 
 This web app imports cell data from a XLSM Spreadsheet and populates various data models within a Django PostGreSQL database. The web app is then able to display the models and sort them by any attribute. The web app can then calculate all scores and rank projects according to NHSEE's formulas and provided data. Our database can be locally and remotely accessed.
